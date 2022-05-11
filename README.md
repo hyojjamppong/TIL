@@ -1,5 +1,4 @@
 # TIL
-___
-Today I Learned
+## Today I Learned
 
-Spaceship Titanic - EDA + 27 different models
+> Likelion AI SCHOOL 6th
