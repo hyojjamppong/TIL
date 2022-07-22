@@ -13,5 +13,7 @@ tokenizer.word_counts.items() # 단어별 빈도수 확인
 pd.DataFrame(tokenizer.word_counts.items()).set_index(0).sort_values(by=1).T
 corpus_sentences = tokenizer.text_to_sequences(corpus)
 
-from tensorflow.keras.preprocessing.sequence import pad_sequence
-pad_sequence(corpus_sentences, max_len=10, padding="pre", truncating="pre")
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+pad_sequences(corpus_sentences, max_len=10, padding="pre", truncating="pre")
+
+pad_sequences(corpus_sentences, maxlen=10
