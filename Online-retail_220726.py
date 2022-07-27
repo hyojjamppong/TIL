@@ -48,3 +48,34 @@ df.isnull().mean() * 100
 # 결측치 시각화
 plt.figure(figsize=(12, 4))
 sns.heatmap(df.isnull(), cmap="gray")
+
+# 전체 수치 변수 시각화
+_ = df.hist()
+
+# 파생변수 생성
+df["TotalPrice"] = df["Quantity"] * df["UnitPrice"] # 전체 주문 금액
+
+# 회원/비회원 구매 비교
+df.loc[df['CustomerID'].isnull(), 'Country'].value_counts() # 국가별 비회원 수
+df.loc[~df['CustomerID'].isnull(), 'Country'].value_counts() # 국가별 회원 수
+
+# 매출액 상위 국가
+df.groupby('Country')['TotalPrice'].agg(['mean', 'sum']).nlargest(10, 'sum').style.format("{:,.0f}")
+
+# 상품 판매 빈도, 판매 총 수량, 총 매출액 상위 10개
+stock_sale = df.groupby("StockCode").aggregate({"InvoiceNo" : "count", 
+                                                "Quantity" : "sum",
+                                                "TotalPrice" : "sum"
+                                                 }).nlargest(10, "InvoiceNo")
+
+stock_desc = df.loc[df["StockCode"].isin(stock_sale.index),
+                    ["StockCode", "Description"]].drop_duplicates("StockCode").set_index("StockCode")
+stock_desc.loc[stock_sale.index] # 해당 제품명 확인
+stock_sale["Desc"] = stock_desc.loc[stock_sale.index] # 상품명 컬럼 생성
+stock_sale
+
+# 구매 취소 비율
+df["Cancel"] = df["Quantity"] < 0
+
+
+
