@@ -34,3 +34,7 @@ item
 
 # confidenc >= 0.6
 association_rules(item, metric='confidence',  min_threshold=0.6)
+
+# 최소 향상도(metric="lift")가 1.2 이상(min_threshold=1.2)인 것만 추출
+rules = association_rules(item_apriori, metric="lift", min_threshold=1.2)
+
