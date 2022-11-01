@@ -100,5 +100,5 @@ sns.barplot(x=model.feature_importances_, y=feature_names)
 from sklearn.metrics import accuracy_score
 accuracy_score(y_test, y_predict)
 
-# model 의 score 로 점수를 계산합니다.
+# model 의 score 로 점수를 계산합니
 model.score(X_test, y_test)
