@@ -24,7 +24,7 @@ df = pd.DataFrame(te_result, columns=te.columns_)
 df = df.astype(int)
 
 
-# 기존의 리스트 형태로 돌리려면?
+# 기존의 리스트 형태로 돌리려면
 # te.inverse_transform(te_result)
 
 
